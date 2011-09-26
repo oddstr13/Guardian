@@ -1,4 +1,4 @@
-package org.guardian.Guardian;
+package org.guardian;
 
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
