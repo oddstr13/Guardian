@@ -1,5 +1,6 @@
 package org.guardian.entries;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
@@ -7,15 +8,16 @@ import org.guardian.ActionType;
 
 public abstract class DataEntry
 {
-	private int id;
-	private ActionType action;
-	private long date;
-	private String playerName;
-	private String worldName;
-	private Location loc;
-	private boolean rollbacked;
-	private String pluginName;
-	private List<DataEntry> children;
+	protected static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss");
+	protected int id;
+	protected ActionType action;
+	protected long date;
+	protected String playerName;
+	protected String worldName;
+	protected Location loc;
+	protected boolean rollbacked;
+	protected String pluginName;
+	protected List<DataEntry> children;
 
 	public int getId() {
 		return id;
@@ -57,11 +59,11 @@ public abstract class DataEntry
 		this.worldName = worldName;
 	}
 
-	public Location getLoc() {
+	public Location getLocation() {
 		return loc;
 	}
 
-	public void setLoc(Location loc) {
+	public void setLocation(Location loc) {
 		this.loc = loc;
 	}
 
