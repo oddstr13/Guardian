@@ -3,9 +3,10 @@ package org.guardian;
 import static org.guardian.util.BukkitUtils.info;
 import static org.guardian.util.BukkitUtils.severe;
 import java.io.IOException;
-import java.sql.Connection;
+import java.util.List;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.guardian.entries.DataEntry;
 
 public class Guardian extends JavaPlugin
 {
@@ -36,8 +37,32 @@ public class Guardian extends JavaPlugin
 		info("Guardian disabled");
 	}
 
-	public Connection getConnection() {
+	/**
+	 * Returns all log matching specified parameters. Also intern methods should use this.
+	 **/
+	public List<DataEntry> getLog(QueryParams params) {
 		// TODO
 		return null;
+	}
+
+	/**
+	 * Performs a rollback on all log matching specified parameters. Also intern methods should use this.
+	 **/
+	public void rollback(QueryParams params) {
+		// TODO
+	}
+
+	/**
+	 * Redoes all changes matching parameters, basically a undo of a rollback. Also intern methods should use this.
+	 **/
+	public void rebuild(QueryParams params) {
+		// TODO
+	}
+
+	/**
+	 * Deletes all log matching specified parameters. Also intern methods should use this.
+	 **/
+	public void clearLog(QueryParams params) {
+		// TODO
 	}
 }
