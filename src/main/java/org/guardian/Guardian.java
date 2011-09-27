@@ -7,6 +7,7 @@ import java.util.List;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.guardian.entries.DataEntry;
+import org.guardian.params.QueryParams;
 
 public class Guardian extends JavaPlugin
 {
