@@ -1,10 +1,19 @@
 package org.guardian.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.material.MaterialData;
+import org.guardian.Config;
 
 public class BukkitUtils
 {
+	private static final Logger log = Bukkit.getLogger();
+
 	public static String materialName(int type) {
 		final Material mat = Material.getMaterial(type);
 		return mat != null ? mat.toString().replace('_', ' ').toLowerCase() : String.valueOf(type);
@@ -21,5 +30,58 @@ public class BukkitUtils
 			return mat.toString().replace('_', ' ').toLowerCase();
 		}
 		return String.valueOf(type);
+	}
+
+	/**
+	 * Send an info level log message to console
+	 */
+	public static void info(String msg) {
+		log.info("[Guardian] " + msg);
+	}
+
+	/**
+	 * Send a warn level log message to console
+	 */
+	public static void warning(String msg) {
+		log.warning("[Guardian] " + msg);
+	}
+
+	/**
+	 * Send a warn level stacktrace to console
+	 */
+	public static void warning(String msg, Exception ex) {
+		log.log(Level.WARNING, "[Guardian] " + msg + ":", ex);
+	}
+
+	/**
+	 * Send a severe level log message to console
+	 */
+	public static void severe(String msg) {
+		log.severe("[Guardian] " + msg);
+	}
+
+	/**
+	 * Send a severe level stacktrace to console
+	 */
+	public static void severe(String msg, Exception ex) {
+		log.log(Level.SEVERE, "[Guardian] " + msg + ":", ex);
+	}
+
+	/**
+	 * Send an debug message to console if debug is enabled
+	 */
+	public static void debug(String msg) {
+		if (Config.debug)
+			info("DEBUG: " + msg);
+	}
+
+	public static String getEntityName(Entity entity) {
+		if (entity instanceof Player)
+			return ((Player)entity).getName();
+		if (entity instanceof TNTPrimed)
+			return "TNT";
+		if (entity.getClass().getSimpleName().substring(0, 5).equals("Craft"))
+			return entity.getClass().getSimpleName().substring(5);
+		return "Unknown";
 	}
 }

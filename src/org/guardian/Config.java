@@ -17,11 +17,12 @@ import org.guardian.tools.ToolMode;
 
 public class Config
 {
-	public final String url, user, password;
-	public final HashMap<String, Tool> toolsByName;
-	public final HashMap<Integer, Tool> toolsByType;
+	public static String url, user, password;
+	public static boolean debug;
+	public static HashMap<String, Tool> toolsByName;
+	public static HashMap<Integer, Tool> toolsByType;
 
-	Config(Guardian guardian) throws IOException {
+	static void load(Guardian guardian) throws IOException {
 		final Map<String, Object> def = new HashMap<String, Object>(), tooldef = new HashMap<String, Object>(), tbdef = new HashMap<String, Object>(), tdef = new HashMap<String, Object>();
 		def.put("version", guardian.getDescription().getVersion());
 		def.put("mysql.host", "localhost");
@@ -29,6 +30,7 @@ public class Config
 		def.put("mysql.database", "minecraft");
 		def.put("mysql.user", "username");
 		def.put("mysql.password", "pass");
+		def.put("debug", false);
 		tdef.put("aliases", Arrays.asList("t"));
 		tdef.put("leftClickBehavior", "NONE");
 		tdef.put("rightClickBehavior", "TOOL");
@@ -58,6 +60,7 @@ public class Config
 		url = "jdbc:mysql://" + config.getString("mysql.host") + ":" + config.getString("mysql.port") + "/" + config.getString("mysql.database");
 		user = config.getString("mysql.user");
 		password = config.getString("mysql.password");
+		debug = config.getBoolean("debug", false);
 		final List<String> toolNames = config.getKeys("tools");
 		final List<Tool> tools = new ArrayList<Tool>();
 		for (final String toolName : toolNames)

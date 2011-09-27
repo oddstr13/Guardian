@@ -1,25 +1,22 @@
 package org.guardian;
 
+import static org.guardian.util.BukkitUtils.info;
+import static org.guardian.util.BukkitUtils.severe;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Guardian extends JavaPlugin
 {
-	private static final Logger log = Bukkit.getLogger();
-	private Config config;
 	private boolean errorWhileLoading = false;
 
 	@Override
 	public void onLoad() {
 		try {
-			config = new Config(this);
+			Config.load(this);
 		} catch (final IOException ex) {
-			log.log(Level.SEVERE, "[Guardian] Failed to load configuration", ex);
+			severe("Failed to load configuration", ex);
 			errorWhileLoading = true;
 		}
 	}
@@ -31,20 +28,16 @@ public class Guardian extends JavaPlugin
 			pm.disablePlugin(this);
 			return;
 		}
-		log.info("Guardian v" + getDescription().getVersion() + " enabled");
+		info("Guardian v" + getDescription().getVersion() + " enabled");
 	}
 
 	@Override
 	public void onDisable() {
-		log.info("Guardian disabled");
+		info("Guardian disabled");
 	}
 
 	public Connection getConnection() {
 		// TODO
 		return null;
-	}
-
-	public Config getConfig() {
-		return config;
 	}
 }
