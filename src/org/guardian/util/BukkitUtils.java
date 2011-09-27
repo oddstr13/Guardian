@@ -3,6 +3,7 @@ package org.guardian.util;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -75,13 +76,23 @@ public class BukkitUtils
 			info("DEBUG: " + msg);
 	}
 
+	/**
+	 * Returns the distance between two Locations
+	 **/
 	public static String getEntityName(Entity entity) {
 		if (entity instanceof Player)
 			return ((Player)entity).getName();
 		if (entity instanceof TNTPrimed)
 			return "TNT";
-		if (entity.getClass().getSimpleName().substring(0, 5).equals("Craft"))
+		if (entity.getClass().getSimpleName().startsWith("Craft"))
 			return entity.getClass().getSimpleName().substring(5);
 		return "Unknown";
+	}
+
+	/**
+	 * Returns the distance between two Locations
+	 **/
+	public static double distance(Location from, Location to) {
+		return Math.sqrt(Math.pow(from.getX() - to.getX(), 2) + Math.pow(from.getY() - to.getY(), 2) + Math.pow(from.getZ() - to.getZ(), 2));
 	}
 }
