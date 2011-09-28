@@ -2,7 +2,7 @@ package org.guardian.tools;
 
 import java.util.List;
 import org.bukkit.permissions.PermissionDefault;
-import org.guardian.QueryParams;
+import org.guardian.params.QueryParams;
 
 public class Tool
 {
