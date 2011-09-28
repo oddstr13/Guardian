@@ -12,6 +12,7 @@ import org.guardian.params.QueryParams;
 public class Guardian extends JavaPlugin
 {
 	private boolean errorWhileLoading = false;
+	private DatabaseBridge database = null;
 
 	@Override
 	public void onLoad() {
@@ -39,11 +40,18 @@ public class Guardian extends JavaPlugin
 	}
 
 	/**
+	 * Sets the database. Should be called once by the database bridge plugin in onLoad event.
+	 **/
+	public void setDatabase(DatabaseBridge database) {
+		if (this.database == null)
+			this.database = database;
+	}
+
+	/**
 	 * Returns all log matching specified parameters. Also intern methods should use this.
 	 **/
 	public List<DataEntry> getLog(QueryParams params) {
-		// TODO
-		return null;
+		return database.getEntries(params);
 	}
 
 	/**
@@ -64,6 +72,6 @@ public class Guardian extends JavaPlugin
 	 * Deletes all log matching specified parameters. Also intern methods should use this.
 	 **/
 	public void clearLog(QueryParams params) {
-		// TODO
+		database.deleteEntries(params);
 	}
 }
