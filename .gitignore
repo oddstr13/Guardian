@@ -2,5 +2,6 @@
 /.project
 /.settings
 /bin
+/lib
 /release
 /target
