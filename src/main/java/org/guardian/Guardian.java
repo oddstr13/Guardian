@@ -11,11 +11,17 @@ import org.guardian.params.QueryParams;
 
 public class Guardian extends JavaPlugin
 {
+	private static Guardian guardian;
 	private boolean errorWhileLoading = false;
 	private DatabaseBridge database = null;
 
+	public static Guardian getInstance() {
+		return guardian;
+	}
+
 	@Override
 	public void onLoad() {
+		guardian = this;
 		try {
 			Config.load(this);
 		} catch (final IOException ex) {

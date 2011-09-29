@@ -91,7 +91,9 @@ public abstract class DataEntry
 		this.children = children;
 	}
 
-	abstract List<BlockState> getRollbackBlockStates();
+	abstract public List<BlockState> getRollbackBlockStates();
 
-	abstract String getMessage();
+	abstract public List<BlockState> getRebuildBlockStates();
+
+	abstract public String getMessage();
 }
