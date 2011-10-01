@@ -42,13 +42,18 @@ public class BlockEntry extends DataEntry
 	}
 
 	@Override
-	List<BlockState> getRollbackBlockStates() {
+	public List<BlockState> getRollbackBlockStates() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	String getMessage() {
+	public List<BlockState> getRebuildBlockStates() {
+		return null;
+	}
+
+	@Override
+	public String getMessage() {
 		final StringBuilder msg = new StringBuilder();
 		if (date > 0)
 			msg.append(dateFormat.format(date) + " ");
@@ -64,5 +69,4 @@ public class BlockEntry extends DataEntry
 			msg.append(" at " + loc.getBlockX() + ":" + loc.getBlockY() + ":" + loc.getBlockZ());
 		return msg.toString();
 	}
-
 }
